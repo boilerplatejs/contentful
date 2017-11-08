@@ -1,4 +1,4 @@
-import {bundles} from '../../../../../src/Config';
+import {settings} from '../../../../../src/Config';
 import async from '@vitruvian-tech/app-studio-core/helpers/Promise';
 import contentful from 'contentful';
 
@@ -12,7 +12,7 @@ const format = data => {
 };
 
 export default async((req, params, resolve, reject) => {
-  const client = contentful.createClient(bundles['@vitruvian-tech/app-studio-contentful']);
+  const client = contentful.createClient(settings['@vitruvian-tech/app-studio-contentful']);
   const type = params[0];
 
   if (!type) {
