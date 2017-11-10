@@ -1,4 +1,3 @@
-import {settings} from '../../../../../config';
 import async from '@vitruvian-tech/app-studio-core/helpers/Promise';
 import contentful from 'contentful';
 
@@ -12,18 +11,20 @@ const format = data => {
 };
 
 export default async((req, params, resolve, reject) => {
-  const client = contentful.createClient(settings['@vitruvian-tech/app-studio-contentful']);
-  const type = params[0];
+  req.api.get(`/@vitruvian-tech/app-studio-core/Config/load`).then(({ settings }) => {
+    const client = contentful.createClient(settings['@vitruvian-tech/app-studio-contentful']);
+    const type = params[0];
 
-  if (!type) {
-    reject(new Error('[Contentful] Entry: \'type\' parameter is required.'));
-  }
+    if (!type) {
+      reject(new Error('[Contentful] Entry: \'type\' parameter is required.'));
+    }
 
-  client.getEntries({ content_type: type })
-    .then((entry) => {
-      resolve(format(entry));
-    }, (err) => {
-      console.log(err);
-      reject(err);
-    });
+    client.getEntries({content_type: type})
+        .then((entry) => {
+          resolve(format(entry));
+        }, (err) => {
+          console.log(err);
+          reject(err);
+        });
+  });
 });
