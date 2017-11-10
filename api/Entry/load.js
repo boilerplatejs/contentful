@@ -1,4 +1,4 @@
-import {settings} from '../../../../../src/Config';
+import {settings} from '../../../../../config';
 import async from '@vitruvian-tech/app-studio-core/helpers/Promise';
 import contentful from 'contentful';
 
