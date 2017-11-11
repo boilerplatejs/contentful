@@ -11,8 +11,8 @@ const format = data => {
 };
 
 export default async((req, params, resolve, reject) => {
-  req.api.get(`/@vitruvian-tech/app-studio-core/Config/load`).then(({ settings }) => {
-    const client = contentful.createClient(settings['@vitruvian-tech/app-studio-contentful']);
+  req.api.get(`/@vitruvian-tech/app-studio-core/Config/api?bundle=@vitruvian-tech/app-studio-contentful`).then(settings => {
+    const client = contentful.createClient(settings);
     const type = params[0];
 
     if (!type) {
