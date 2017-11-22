@@ -1,5 +1,4 @@
 import async from '@vitruvian-tech/app-studio-core/lib/Promise';
-import {toCamelCase} from '@vitruvian-tech/app-studio-core/lib/Sequelize';
 import contentful from 'contentful';
 
 const config = req => req.api.get(`/@vitruvian-tech/app-studio-core/Config/api?bundle=@vitruvian-tech/app-studio-contentful`);
@@ -15,7 +14,7 @@ const format = data => {
 
 export const list = async((req, params, resolve, reject) => {
     config(req).then(config => {
-        const client = contentful.createClient(toCamelCase(config));
+        const client = contentful.createClient(config);
         const type = params[0];
 
         if (!type) {
@@ -34,7 +33,7 @@ export const list = async((req, params, resolve, reject) => {
 
 export const load = async((req, params, resolve, reject) => {
     config(req).then(config => {
-        const client = contentful.createClient(toCamelCase(config));
+        const client = contentful.createClient(config);
 
         client.getEntry(params[0])
             .then((entry) => {
