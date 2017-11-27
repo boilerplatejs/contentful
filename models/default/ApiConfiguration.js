@@ -1,4 +1,4 @@
-import {parse, define, Model, DataTypes} from '@vitruvian-tech/app-studio-core/lib/Sequelize';
+import {parse, define, Model, DataTypes} from '@machete-platform/core-bundle/lib/Sequelize';
 @define(parse(__filename))
 
 /**

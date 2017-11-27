@@ -1,7 +1,7 @@
-import async from '@vitruvian-tech/app-studio-core/lib/Promise';
+import async from '@machete-platform/core-bundle/lib/Promise';
 import contentful from 'contentful';
 
-const config = req => req.api.get(`/@vitruvian-tech/app-studio-core/Config/api?bundle=@vitruvian-tech/app-studio-contentful`);
+const config = req => req.api.get(`/@machete-platform/core-bundle/Config/api?bundle=@machete-platform/contentful-bundle`);
 
 const format = data => {
     return data.items[0].fields.members.map(member => {

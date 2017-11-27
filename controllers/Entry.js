@@ -1,9 +1,9 @@
-const LOAD = '@vitruvian-tech/app-studio-contentful/Entry/LOAD';
-const LOAD_SUCCESS = '@vitruvian-tech/app-studio-contentful/Entry/LOAD_SUCCESS';
-const LOAD_FAIL = '@vitruvian-tech/app-studio-contentful/Entry/LOAD_FAIL';
-const LIST = '@vitruvian-tech/app-studio-contentful/Entry/LIST';
-const LIST_SUCCESS = '@vitruvian-tech/app-studio-contentful/Entry/LIST_SUCCESS';
-const LIST_FAIL = '@vitruvian-tech/app-studio-contentful/Entry/LIST_FAIL';
+const LOAD = '@machete-platform/contentful-bundle/Entry/LOAD';
+const LOAD_SUCCESS = '@machete-platform/contentful-bundle/Entry/LOAD_SUCCESS';
+const LOAD_FAIL = '@machete-platform/contentful-bundle/Entry/LOAD_FAIL';
+const LIST = '@machete-platform/contentful-bundle/Entry/LIST';
+const LIST_SUCCESS = '@machete-platform/contentful-bundle/Entry/LIST_SUCCESS';
+const LIST_FAIL = '@machete-platform/contentful-bundle/Entry/LIST_FAIL';
 
 const initialState = {
   loaded: false,
@@ -64,13 +64,13 @@ export default function reducer(state = initialState, action = {}) {
 export function load(id) {
   return {
     types: [LOAD, LOAD_SUCCESS, LOAD_FAIL],
-    promise: (client) => client.get(`/@vitruvian-tech/app-studio-contentful/Entry/load/${id}`)
+    promise: (client) => client.get(`/@machete-platform/contentful-bundle/Entry/load/${id}`)
   };
 }
 
 export function list(type) {
   return {
     types: [LIST, LIST_SUCCESS, LIST_FAIL],
-    promise: (client) => client.get(`/@vitruvian-tech/app-studio-contentful/Entry/list/${type}`)
+    promise: (client) => client.get(`/@machete-platform/contentful-bundle/Entry/list/${type}`)
   };
 }
