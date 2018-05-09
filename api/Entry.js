@@ -12,11 +12,11 @@ const format = data => {
     });
 };
 
-const api = (client, id, method = 'getEntry') => {
+const api = (client, id, method = 'getEntry', meta) => {
     return new Promise((resolve, reject) => {
         client[method](id)
           .then(
-            entry => resolve(entry.fields),
+            entry => resolve(meta ? entry : entry.fields),
             err => {
                 if (err.sys.id === 'NotFound') {
                     reject(err);
@@ -64,7 +64,8 @@ export const post = async((req, params, resolve, reject) => {
         const client = contentful.createClient(config);
 
         try {
-            const fields = await api(client, params[0]);
+            const entry = await api(client, params[0], 'getEntry', true);
+            const fields = { id: entry.sys.id, ...entry.fields };
             const hero = await api(client, fields.hero.sys.id);
 
             fields.author =  await api(client, fields.author.sys.id);
