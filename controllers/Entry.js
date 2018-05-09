@@ -74,3 +74,10 @@ export function list(type) {
     promise: (client) => client.get(`/@machete-platform/contentful-bundle/Entry/list/${type}`)
   };
 }
+
+export function post(id) {
+  return {
+    types: [LOAD, LOAD_SUCCESS, LOAD_FAIL],
+    promise: (client) => client.get(`/@machete-platform/contentful-bundle/Entry/post/${id}`)
+  };
+}
