@@ -66,10 +66,10 @@ export const post = async((req, params, resolve, reject) => {
         try {
             const entry = await api(client, params[0], 'getEntry', true);
             const fields = { id: entry.sys.id, ...entry.fields };
-            const hero = await api(client, fields.hero.sys.id);
+            const hero = fields.hero ? await api(client, fields.hero.sys.id) : undefined;
 
             fields.author =  await api(client, fields.author.sys.id);
-            fields.hero = hero.file ? { ...hero, ...(await api(client, hero.file.sys.id, 'getAsset')) } : hero;
+            fields.hero = hero && hero.file ? { ...hero, ...(await api(client, hero.file.sys.id, 'getAsset')) } : hero;
             fields.content = await Promise.all(fields.content.map(async (content) => {
                 content = await api(client, content.sys.id);
                 return content.file ? { ...content, ...(await api(client, content.file.sys.id, 'getAsset')) } : content;
