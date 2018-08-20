@@ -12,7 +12,7 @@
     "upgrade": "machete migrate up --bundle $npm_package_name",
     "downgrade": "machete migrate down --bundle $npm_package_name"
   },
-  "author": "Peter C. Romano <pete@vitruvian.tech> (http://github.com/vitruvian-tech)",
+  "author": "Peter C. Romano <pete@vitruvian.tech> (http://github.com/VitruvianTech)",
   "license": "BSD-3-Clause",
   "dependencies": {
     "contentful": "^3.7.0"
