@@ -2,6 +2,7 @@ import async from '@machete-platform/core-bundle/lib/Promise';
 import contentful from 'contentful';
 
 const config = req => req.api.get(`/@machete-platform/core-bundle/Config/api?bundle=@machete-platform/contentful-bundle`);
+let cache = {};
 
 const format = data => {
     return data.items[0].fields.members.map(member => {
@@ -13,10 +14,10 @@ const format = data => {
 };
 
 const api = (client, id, method = 'getEntry', meta) => {
-    return new Promise((resolve, reject) => {
+    return cache[id] ? Promise.resolve(cache[id]) : new Promise((resolve, reject) => {
         client[method](id)
           .then(
-            entry => resolve(meta ? entry : entry.fields),
+            entry => resolve(cache[id] = meta ? entry : entry.fields),
             err => {
                 if (err.sys.id === 'NotFound') {
                     reject(err);
@@ -135,4 +136,9 @@ export const posts = async((req, params, resolve, reject) => {
             reject(e);
         }
     });
+});
+
+export const refresh = async(async (req, params, resolve, reject) => {
+    cache = {};
+    resolve({});
 });
