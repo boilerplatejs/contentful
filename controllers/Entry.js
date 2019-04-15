@@ -18,7 +18,35 @@ const initialState = {
   data: {}
 };
 
-export default function reducer(state = initialState, action = {}) {
+export function load(id) {
+  return {
+    types: [LOAD, LOAD_SUCCESS, LOAD_FAIL],
+    promise: (client) => client.get(`/@machete-platform/contentful-bundle/Entry/load/${id}`)
+  };
+}
+
+export function list(type) {
+  return {
+    types: [LIST, LIST_SUCCESS, LIST_FAIL],
+    promise: (client) => client.get(`/@machete-platform/contentful-bundle/Entry/list/${type}`)
+  };
+}
+
+export function post(id) {
+  return {
+    types: [POST, POST_SUCCESS, POST_FAIL],
+    promise: (client) => client.get(`/@machete-platform/contentful-bundle/Entry/post/${id}`)
+  };
+}
+
+export function posts(collection) {
+  return {
+    types: [COLLECTION, COLLECTION_SUCCESS, COLLECTION_FAIL],
+    promise: (client) => client.get(collection ? `/@machete-platform/contentful-bundle/Entry/posts/${collection}` : `/@machete-platform/contentful-bundle/Entry/posts`)
+  };
+}
+
+export default (state = initialState, action = {}) => {
   switch (action.type) {
     case LOAD:
       return {
@@ -115,32 +143,4 @@ export default function reducer(state = initialState, action = {}) {
     default:
       return state;
   }
-}
-
-export function load(id) {
-  return {
-    types: [LOAD, LOAD_SUCCESS, LOAD_FAIL],
-    promise: (client) => client.get(`/@machete-platform/contentful-bundle/Entry/load/${id}`)
-  };
-}
-
-export function list(type) {
-  return {
-    types: [LIST, LIST_SUCCESS, LIST_FAIL],
-    promise: (client) => client.get(`/@machete-platform/contentful-bundle/Entry/list/${type}`)
-  };
-}
-
-export function post(id) {
-  return {
-    types: [POST, POST_SUCCESS, POST_FAIL],
-    promise: (client) => client.get(`/@machete-platform/contentful-bundle/Entry/post/${id}`)
-  };
-}
-
-export function posts(collection) {
-  return {
-    types: [COLLECTION, COLLECTION_SUCCESS, COLLECTION_FAIL],
-    promise: (client) => client.get(collection ? `/@machete-platform/contentful-bundle/Entry/posts/${collection}` : `/@machete-platform/contentful-bundle/Entry/posts`)
-  };
-}
+};
