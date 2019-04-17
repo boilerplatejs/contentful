@@ -1,7 +1,7 @@
 import async from '@machete-platform/core-bundle/lib/Promise';
 import contentful from 'contentful';
 
-const config = req => req.api.get(`/@machete-platform/core-bundle/Config/api?bundle=@machete-platform/contentful-bundle`);
+const config = req => req.service.get(`/@machete-platform/core-bundle/Config/service?bundle=@machete-platform/contentful-bundle`);
 let cache = {};
 
 const format = data => {
