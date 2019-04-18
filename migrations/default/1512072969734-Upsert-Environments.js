@@ -2,14 +2,14 @@ import {getModels} from '@machete-platform/core-bundle/lib/Sequelize';
 
 export default class {
   static async up(models, sequelize, DataTypes) {
-    await models.Environment.create({
+    await models.Environment.upsert({
       name: 'development',
-      ApiConfigurationId: 1
+      ServiceConfigurationId: 3
     });
 
-    await models.Environment.create({
+    await models.Environment.upsert({
       name: 'production',
-      ApiConfigurationId: 2
+      ServiceConfigurationId: 4
     });
   }
 
@@ -17,14 +17,14 @@ export default class {
     await models.Environment.destroy({
       where: {
         name: 'development',
-        ApiConfigurationId: 1
+        ServiceConfigurationId: 3
       }
     });
 
     await models.Environment.destroy({
       where: {
         name: 'production',
-        ApiConfigurationId: 2
+        ServiceConfigurationId: 4
       }
     });
   }
