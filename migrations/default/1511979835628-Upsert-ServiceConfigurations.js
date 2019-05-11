@@ -2,23 +2,30 @@ import {getModels} from '@machete-platform/core-bundle/lib/Sequelize';
 
 export default class {
   static async up(models, sequelize, DataTypes) {
-    await models.ServiceConfiguration.create({
-      space: 'ft53b2q3sca9',
-      accessToken: 'b3613fdf478448a7097b782a6e6d88ef57d071db1851df8b3597df6b3f44bdf9'
-    });
+    // await models.ServiceConfiguration.create({
+    //   space: '<DEV_SPACE>',
+    //   accessToken: '<DEV_TOKEN>'
+    // });
 
-    await models.ServiceConfiguration.create({
-      space: 'ft53b2q3sca9',
-      accessToken: 'b3613fdf478448a7097b782a6e6d88ef57d071db1851df8b3597df6b3f44bdf9'
-    });
+    // await models.ServiceConfiguration.create({
+    //   space: '<PROD_SPACE>',
+    //   accessToken: '<PROD_TOKEN>'
+    // });
   }
 
   static async down(models, sequelize, DataTypes) {
-    await models.ServiceConfiguration.destroy({
-      where: {
-        space: 'ft53b2q3sca9',
-        accessToken: 'b3613fdf478448a7097b782a6e6d88ef57d071db1851df8b3597df6b3f44bdf9'
-      }
-    });
+    // await models.ServiceConfiguration.destroy({
+    //   where: {
+    //     space: '<DEV_SPACE>',
+    //     accessToken: '<DEV_TOKEN>'
+    //   }
+    // });
+
+    // await models.ServiceConfiguration.destroy({
+    //   where: {
+    //     space: '<PROD_SPACE>',
+    //     accessToken: '<PROD_TOKEN>'
+    //   }
+    // });
   }
 }
