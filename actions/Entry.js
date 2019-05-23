@@ -1,15 +1,15 @@
-const LOAD = '@machete-platform/contentful-bundle/Entry/LOAD';
-const LOAD_SUCCESS = '@machete-platform/contentful-bundle/Entry/LOAD_SUCCESS';
-const LOAD_FAIL = '@machete-platform/contentful-bundle/Entry/LOAD_FAIL';
-const LIST = '@machete-platform/contentful-bundle/Entry/LIST';
-const LIST_SUCCESS = '@machete-platform/contentful-bundle/Entry/LIST_SUCCESS';
-const LIST_FAIL = '@machete-platform/contentful-bundle/Entry/LIST_FAIL';
-const POST = '@machete-platform/contentful-bundle/Entry/POST';
-const POST_SUCCESS = '@machete-platform/contentful-bundle/Entry/POST_SUCCESS';
-const POST_FAIL = '@machete-platform/contentful-bundle/Entry/POST_FAIL';
-const COLLECTION = '@machete-platform/contentful-bundle/Entry/COLLECTION';
-const COLLECTION_SUCCESS = '@machete-platform/contentful-bundle/Entry/COLLECTION_SUCCESS';
-const COLLECTION_FAIL = '@machete-platform/contentful-bundle/Entry/COLLECTION_FAIL';
+const LOAD = '@boilerplatejs/contentful/Entry/LOAD';
+const LOAD_SUCCESS = '@boilerplatejs/contentful/Entry/LOAD_SUCCESS';
+const LOAD_FAIL = '@boilerplatejs/contentful/Entry/LOAD_FAIL';
+const LIST = '@boilerplatejs/contentful/Entry/LIST';
+const LIST_SUCCESS = '@boilerplatejs/contentful/Entry/LIST_SUCCESS';
+const LIST_FAIL = '@boilerplatejs/contentful/Entry/LIST_FAIL';
+const POST = '@boilerplatejs/contentful/Entry/POST';
+const POST_SUCCESS = '@boilerplatejs/contentful/Entry/POST_SUCCESS';
+const POST_FAIL = '@boilerplatejs/contentful/Entry/POST_FAIL';
+const COLLECTION = '@boilerplatejs/contentful/Entry/COLLECTION';
+const COLLECTION_SUCCESS = '@boilerplatejs/contentful/Entry/COLLECTION_SUCCESS';
+const COLLECTION_FAIL = '@boilerplatejs/contentful/Entry/COLLECTION_FAIL';
 
 const initialState = {
   loaded: false,
@@ -21,28 +21,28 @@ const initialState = {
 export function load(id) {
   return {
     types: [LOAD, LOAD_SUCCESS, LOAD_FAIL],
-    promise: (client) => client.get(`/@machete-platform/contentful-bundle/Entry/load/${id}`)
+    promise: (client) => client.get(`/@boilerplatejs/contentful/Entry/load/${id}`)
   };
 }
 
 export function list(type) {
   return {
     types: [LIST, LIST_SUCCESS, LIST_FAIL],
-    promise: (client) => client.get(`/@machete-platform/contentful-bundle/Entry/list/${type}`)
+    promise: (client) => client.get(`/@boilerplatejs/contentful/Entry/list/${type}`)
   };
 }
 
 export function post(id) {
   return {
     types: [POST, POST_SUCCESS, POST_FAIL],
-    promise: (client) => client.get(`/@machete-platform/contentful-bundle/Entry/post/${id}`)
+    promise: (client) => client.get(`/@boilerplatejs/contentful/Entry/post/${id}`)
   };
 }
 
 export function posts(collection) {
   return {
     types: [COLLECTION, COLLECTION_SUCCESS, COLLECTION_FAIL],
-    promise: (client) => client.get(collection ? `/@machete-platform/contentful-bundle/Entry/posts/${collection}` : `/@machete-platform/contentful-bundle/Entry/posts`)
+    promise: (client) => client.get(collection ? `/@boilerplatejs/contentful/Entry/posts/${collection}` : `/@boilerplatejs/contentful/Entry/posts`)
   };
 }
 

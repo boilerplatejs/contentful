@@ -1,7 +1,7 @@
-import async from '@machete-platform/core-bundle/lib/Promise';
+import async from '@boilerplatejs/core/lib/Promise';
 import contentful from 'contentful';
 
-const config = req => req.service.get(`/@machete-platform/core-bundle/Config/service?bundle=@machete-platform/contentful-bundle`);
+const config = req => req.service.get(`/@boilerplatejs/core/Config/service?bundle=@boilerplatejs/contentful`);
 let cache = {};
 
 const format = data => {

@@ -1,5 +1,3 @@
-import {getModels} from '@machete-platform/core-bundle/lib/Sequelize';
-
 export default class {
   static async up(models, sequelize, DataTypes) {
     // await models.Environment.upsert({

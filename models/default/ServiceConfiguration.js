@@ -1,4 +1,4 @@
-import {parse, define, Model, DataTypes} from '@machete-platform/core-bundle/lib/Sequelize';
+import {parse, define, Model, DataTypes} from '@boilerplatejs/core/lib/Sequelize';
 @define(parse(__filename))
 
 /**
