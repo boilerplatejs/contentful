@@ -86,17 +86,21 @@ export const list = async((req, params, resolve, reject) => {
     });
 });
 
-export const load = async((req, params, resolve, reject) => {
-    config(req).then(async (config) => {
-        const client = contentful.createClient(config);
+export const load = async (req, params) => {
+    const client = contentful.createClient(await config(req));
+    const id = params[0];
 
-        try {
-            resolve(await api(client, params[0]));
-        } catch(e) {
-            reject(e);
-        }
-    });
-});
+    try {
+        return /*cache[id] || */await client.getEntries({ 'sys.id': id })
+            .then(entries => {
+                return (/*cache[id] = */entries.items[0]);
+            }, err => {
+                throw err;
+            });
+    } catch(e) {
+        throw e;
+    }
+};
 
 export const post = async((req, params, resolve, reject) => {
     config(req).then(async (config) => {
